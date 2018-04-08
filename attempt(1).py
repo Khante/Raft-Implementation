@@ -277,6 +277,7 @@ def clientServer():
     while(True):
         incoming = someSocketBind.recv_json()
         if(incoming == 'punch_with_left'):
+            pass
 
 if __name__ == "__main__":
     global identity
