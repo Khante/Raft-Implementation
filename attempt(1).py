@@ -6,7 +6,8 @@ import zmq
 from concurrent.futures import ThreadPoolExecutor
 import signal
 import os
-import random
+#import random
+from random import randint
 
 def setValue(value):
     global state
@@ -191,37 +192,81 @@ def leaderClient():
         print(message[0])
         print(message[1])
         if message[0] == "blocking_with_left" and message[1] == "punch_with_right":
-            pass
+            socketClientSendArray[0].send_json("Successfully blocked a punch")
+            socketClientSendArray[1].send_json("Your punch was blocked")
         elif message[0] == "blocking_with_left" and message[1] == "punch_with_left":
-            pass
+            if(randint(0, 9) == 1):
+                socketClientSendArray[0].send_json("Your head got knocked off")
+                socketClientSendArray[1].send_json("Victory")
         elif message[0] == "blocking_with_left" and message[1] == "blocking_with_left":
             pass
         elif message[0] == "blocking_with_left" and message[1] == "blocking_with_right":
             pass
         elif message[0] == "blocking_with_right" and message[1] == "punch_with_right":
-            pass
+            if(randint(0, 9) == 1):
+                socketClientSendArray[0].send_json("Your head got knocked off")
+                socketClientSendArray[1].send_json("Victory")
         elif message[0] == "blocking_with_right" and message[1] == "punch_with_left":
-            pass
+            socketClientSendArray[0].send_json("Successfully blocked a punch")
+            socketClientSendArray[1].send_json("Your punch was blocked")
         elif message[0] == "blocking_with_right" and message[1] == "blocking_with_right":
             pass
         elif message[0] == "blocking_with_right" and message[1] == "blocking_with_left":
             pass
         elif message[0] == "punch_with_right" and message[1] == "punch_with_right":
-            pass
-        elif message[0] == "punch_with_right" and message[1] == "punch_with_leftt":
-            pass
+            x = randint(0,9)
+            if(x == 1):
+                socketClientSendArray[0].send_json("Your head got knocked off")
+                socketClientSendArray[1].send_json("Victory")
+            elif(x == 2):
+                socketClientSendArray[0].send_json("Victory")
+                socketClientSendArray[1].send_json("Your head got knocked off")
+            else:
+                pass
+        elif message[0] == "punch_with_right" and message[1] == "punch_with_left":
+            x = randint(0,9)
+            if(x == 1):
+                socketClientSendArray[0].send_json("Your head got knocked off")
+                socketClientSendArray[1].send_json("Victory")
+            elif(x == 2):
+                socketClientSendArray[0].send_json("Victory")
+                socketClientSendArray[1].send_json("Your head got knocked off")
+            else:
+                pass
         elif message[0] == "punch_with_right" and message[1] == "blocking_with_right":
-            pass
+            x = randint(0,9)
+            if(x == 1):
+                socketClientSendArray[0].send_json("Victory")
+                socketClientSendArray[1].send_json("Your head got knocked off")
         elif message[0] == "punch_with_right" and message[1] == "blocking_with_left":
             pass
         elif message[0] == "punch_with_left" and message[1] == "punch_with_right":
-            pass
+            x = randint(0,9)
+            if(x == 1):
+                socketClientSendArray[0].send_json("Your head got knocked off")
+                socketClientSendArray[1].send_json("Victory")
+            elif(x == 2):
+                socketClientSendArray[0].send_json("Victory")
+                socketClientSendArray[1].send_json("Your head got knocked off")
+            else:
+                pass
         elif message[0] == "punch_with_left" and message[1] == "punch_with_left":
-            pass
+            x = randint(0,9)
+            if(x == 1):
+                socketClientSendArray[0].send_json("Your head got knocked off")
+                socketClientSendArray[1].send_json("Victory")
+            elif(x == 2):
+                socketClientSendArray[0].send_json("Victory")
+                socketClientSendArray[1].send_json("Your head got knocked off")
+            else:
+                pass
         elif message[0] == "punch_with_left" and message[1] == "blocking_with_right":
             pass
         elif message[0] == "punch_with_left" and message[1] == "blocking_with_left":
-            pass
+            x = randint(0,9)
+            if(x == 1):
+                socketClientSendArray[0].send_json("Victory")
+                socketClientSendArray[1].send_json("Your head got knocked off")
         else:
             pass
 
@@ -290,6 +335,7 @@ def clientServer():
         #incoming = someSocketBind.recv_json()
         #if(incoming == 'punch_with_left'):
         #    pass
+        print(socketBindArray[0].recv_json())
 
 if __name__ == "__main__":
     global identity
@@ -326,7 +372,9 @@ if __name__ == "__main__":
     socketClientBindSix, socketClientBindSeven = contextClientBindSix.socket(zmq.PAIR), contextClientBindSeven.socket(zmq.PAIR)
     clientBindArray = [socketClientBindSix, socketClientBindSeven]
     for i in range(len(clientBindArray)):
-        clientBindArray[i].bind("tcp://*:%s" % str(int(port)+i+5+1)) #binds to 6006, 6007
+        if (i+1)!=int(identity):
+            #print(int(port)+i+1)
+            clientBindArray[i].bind("tcp://*:%s" % str(int(port)+i+5+1)) #binds to 6006, 6007
     ########################
     contextSendOne, contextSendTwo, contextSendThree, contextSendFour, contextSendFive = zmq.Context(), zmq.Context() , zmq.Context() , zmq.Context() ,zmq.Context()
     socketSendOne, socketSendTwo, socketSendThree, socketSendFour, socketSendFive = contextSendOne.socket(zmq.PAIR), contextSendTwo.socket(zmq.PAIR), contextSendThree.socket(zmq.PAIR), contextSendFour.socket(zmq.PAIR), contextSendFive.socket(zmq.PAIR)
