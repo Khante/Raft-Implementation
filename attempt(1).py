@@ -1,7 +1,6 @@
 import time
 import sys
 import threading
-import os
 import zmq
 from concurrent.futures import ThreadPoolExecutor
 import signal
@@ -192,6 +191,10 @@ def leaderClient():
             message[i] = clientBindArray[i].recv_json().split(':')[1]
         print(message[0])
         print(message[1])
+        ownFile = open("ownCalendar.txt", 'w')
+        ownFile.writelines("\n"+"first "+ message[0])
+        ownFile.writelines("\n"+"first "+ message[1])
+        ownFile.close()
         if message[0] == "blocking_with_left" and message[1] == "punch_with_right":
             socketClientSendArray[0].send_json("Successfully blocked a punch")
             socketClientSendArray[1].send_json("Your punch was blocked")
