@@ -161,6 +161,7 @@ def leaderServer():
         for i in range(len(socketSendArray)):
             if (i+1)!=int(identity):
                 socketSendArray[i].send_json(heartbeatMessage)
+                print("sending heartbeat")
         #print("lol")
         time.sleep(1) #this sleep duration should be less than others
 
