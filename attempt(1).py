@@ -190,7 +190,8 @@ def leaderClient():
         print("True")
         for i in range(len(clientBindArray)):
             print("TooTrue")
-            message[i] = clientBindArray[i].recv_json().split(':')[1]
+            print(clientBindArray[i].recv_json())
+            #message[i] = clientBindArray[i].recv_json().split(':')[1]
         print(message[0])
         print(message[1])
         if message[0] == "blocking_with_left" and message[1] == "punch_with_right":
