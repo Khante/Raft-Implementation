@@ -330,7 +330,7 @@ if __name__ == "__main__":
     socketClientSendOne, socketClientSendTwo = contextClientSendOne.socket(zmq.PAIR), contextClientSendTwo.socket(zmq.PAIR)
     global socketClientSendArray
     socketClientSendArray = [socketClientSendOne, socketClientSendTwo]
-    for i in range(socketClientSendArray):
+    for i in range(len(socketClientSendArray)):
         socketClientSendArray.connect("tcp://" + ipAddresses2[i]+ ":%s" % str(int(port)+int(identity)))  #client identities have to be 6 and 7
     ###############################
     time.sleep(6)
