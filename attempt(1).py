@@ -334,4 +334,4 @@ if __name__ == "__main__":
         socketClientSendArray[i].connect("tcp://" + ipAddresses2[i]+ ":%s" % str(int(port)+int(identity)))  #client identities have to be 6 and 7
     ###############################
     time.sleep(6)
-    setValue(sys.argv[2]) #enter information as programName identity(from o to 5) leader etc
+    setValue(int(sys.argv[2])) #enter information as programName identity(from o to 5) leader etc
