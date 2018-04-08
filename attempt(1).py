@@ -309,7 +309,7 @@ if __name__ == "__main__":
             socketBindArray[i].bind("tcp://*:%s" % str(int(port)+i+1))
     ###########################################
     global clientBindArray
-    ipAddresses2 = ['10.142.0.7','10.142.0.8'] of clients
+    ipAddresses2 = ['10.142.0.7','10.142.0.8'] #of clients
     contextClientBindSix, contextClientBindSeven = zmq.Context(), zmq.Context()
     socketClientBindSix, socketClientBindSeven = contextClientBindSix(zmq.PAIR), contextClientBindSeven(zmq.PAIR)
     clientBindArray = [socketClientBindSix, socketClientBindSeven]
