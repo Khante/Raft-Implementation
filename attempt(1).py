@@ -33,6 +33,14 @@ def setValue(value):
         threadArray.append(threading.Thread(target=leaderClient))
         threadArray[len(threadArray)-2].start()
         threadArray[len(threadArray)-1].start()
+    elif(state!=value and (value==3)):
+        print("in Client")
+        state = value
+        #executor = ThreadPoolExecutor(max_workers=2)
+        threadArray.append(threading.Thread(target=clientServer))
+        threadArray.append(threading.Thread(target=clientClient))
+        threadArray[len(threadArray)-2].start()
+        threadArray[len(threadArray)-1].start()
     else:
         pass
 
@@ -108,14 +116,14 @@ def followerServer():
     global clientBindArray
     global socketClientSendArray
     while state == 1:
-        print("we here bois")
+        #print("we here bois")
         message = [0,0,0,0,0]
         timer1 = time.time()
         for i in range(len(socketBindArray)):
             if (i+1)!=int(identity):
                 #print(int(port)+i+1)
                 message[i] = socketBindArray[i].recv_json()
-                print(message[i])
+                #print(message[i])
                 if message[i].split(':')[1] == 'heartbeat': #need to change this
                     print("getting heartbeats")
                     timer2 = time.time()
@@ -161,7 +169,7 @@ def leaderServer():
         for i in range(len(socketSendArray)):
             if (i+1)!=int(identity):
                 socketSendArray[i].send_json(heartbeatMessage)
-                print("sending heartbeat")
+                #print("sending heartbeat")
         #print("lol")
         time.sleep(1) #this sleep duration should be less than others
 
@@ -180,6 +188,8 @@ def leaderClient():
         message = [0,0]
         for i in range(len(clientBindArray)):
             message[i] = clientBindArray[i].recv_json().split(':')[1]
+        print(message[0])
+        print(message[1])
         if message[0] == "blocking_with_left" and message[1] == "punch_with_right":
             pass
         elif message[0] == "blocking_with_left" and message[1] == "punch_with_left":
