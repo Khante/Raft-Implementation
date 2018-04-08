@@ -187,9 +187,7 @@ def leaderClient():
     #if you have failed and you get a heartbeat message from others then you should go to being a follower
     while(state==2):
         message = [0,0]
-        print("True")
         for i in range(len(clientBindArray)):
-            print("TooTrue")
             print(clientBindArray[i].recv_json())
             #message[i] = clientBindArray[i].recv_json().split(':')[1]
         print(message[0])
@@ -217,6 +215,8 @@ def leaderClient():
         elif message[0] == "blocking_with_right" and message[1] == "blocking_with_left":
             pass
         elif message[0] == "punch_with_right" and message[1] == "punch_with_right":
+            socketClientSendArray[0].send_json("Your head got knocked off")   #NDLFDSF
+            socketClientSendArray[1].send_json("Victory")  #ADSIFOIDF
             x = randint(0,9)
             if(x == 1):
                 socketClientSendArray[0].send_json("Your head got knocked off")
@@ -330,10 +330,6 @@ def clientServer():
     global clientBindArray
     global socketClientSendArray
     while(True):
-        pass
-        #incoming = someSocketBind.recv_json()
-        #if(incoming == 'punch_with_left'):
-        #    pass
         print(socketBindArray[0].recv_json())
 
 if __name__ == "__main__":
