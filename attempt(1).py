@@ -311,7 +311,7 @@ if __name__ == "__main__":
     global clientBindArray
     ipAddresses2 = ['10.142.0.7','10.142.0.8'] #of clients
     contextClientBindSix, contextClientBindSeven = zmq.Context(), zmq.Context()
-    socketClientBindSix, socketClientBindSeven = contextClientBindSix(zmq.PAIR), contextClientBindSeven(zmq.PAIR)
+    socketClientBindSix, socketClientBindSeven = contextClientBindSix.socket(zmq.PAIR), contextClientBindSeven.socket(zmq.PAIR)
     clientBindArray = [socketClientBindSix, socketClientBindSeven]
     for i in range(len(clientBindArray)):
         clientBindArray[i].bind("tcp://*:%s" % str(int(port)+i+5+1)) #binds to 6006, 6007
@@ -327,7 +327,7 @@ if __name__ == "__main__":
 
     ######################################
     contextClientSendOne, contextClientSendTwo = zmq.Context(), zmq.Context()
-    socketClientSendOne, socketClientSendTwo = contextClientSendOne(zmq.PAIR), contextClientSendTwo(zmq.PAIR)
+    socketClientSendOne, socketClientSendTwo = contextClientSendOne.scoket(zmq.PAIR), contextClientSendTwo.scoket(zmq.PAIR)
     global socketClientSendArray
     socketClientSendArray = [socketClientSendOne, socketClientSendTwo]
     for i in range(socketClientSendArray):
