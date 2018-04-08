@@ -286,9 +286,10 @@ def clientServer():
     global clientBindArray
     global socketClientSendArray
     while(True):
-        incoming = someSocketBind.recv_json()
-        if(incoming == 'punch_with_left'):
-            pass
+        pass
+        #incoming = someSocketBind.recv_json()
+        #if(incoming == 'punch_with_left'):
+        #    pass
 
 if __name__ == "__main__":
     global identity
