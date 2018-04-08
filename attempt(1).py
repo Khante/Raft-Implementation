@@ -247,25 +247,25 @@ def clientClient():
         user_input = input()
         if(user_input == 'q'): #block with left
             #setValue('blocking_with_left')
-            for i in range(len(socketSendArray())):
+            for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":blocking_with_left")
             pass
         elif(user_input=='w'): #block with right
             #setValue('blocking_with_right')
-            for i in range(len(socketSendArray())):
+            for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":blocking_with_right")
             pass
         elif(user_input == 'o'): #punch with left
             #setValue('non_blocking')
             socketSend.send_json('punch_with_left')
-            for i in range(len(socketSendArray())):
+            for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":punch_with_left")
             time.sleep(1)
             pass
         elif(user_input == 'p'): #punch with right
             #setValue('non_blocking')
             socketSend.send_json('punch_with_right')
-            for i in range(len(socketSendArray())):
+            for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":punch_with_right")
             time.sleep(1)
             pass
