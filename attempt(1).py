@@ -187,7 +187,9 @@ def leaderClient():
     #if you have failed and you get a heartbeat message from others then you should go to being a follower
     while(state==2):
         message = [0,0]
+        print("True")
         for i in range(len(clientBindArray)):
+            print("TooTrue")
             message[i] = clientBindArray[i].recv_json().split(':')[1]
         print(message[0])
         print(message[1])
@@ -294,26 +296,22 @@ def clientClient():
             #setValue('blocking_with_left')
             for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":blocking_with_left")
-            pass
         elif(user_input=='w'): #block with right
             #setValue('blocking_with_right')
             for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":blocking_with_right")
-            pass
         elif(user_input == 'o'): #punch with left
             #setValue('non_blocking')
             #socketSendArray[i].send_json('punch_with_left')
             for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":punch_with_left")
             time.sleep(1)
-            pass
         elif(user_input == 'p'): #punch with right
             #setValue('non_blocking')
             #socketSendArray[i].send_json('punch_with_right')
             for i in range(len(socketSendArray)):
                 socketSendArray[i].send_json(str(identity)+ ":punch_with_right")
             time.sleep(1)
-            pass
         else:
             print("Please follow the instructions dude")
     
