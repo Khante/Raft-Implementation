@@ -211,19 +211,8 @@ def leaderClient():
             pass
         elif message[0] == "punch_with_left" and message[1] == "blocking_with_left":
             pass
-        #message = [0,0,0,0,0]
-     """    for i in range(len(socketBindArray)):
-            if (i+1)!=int(identity):
-                #print(int(port)+i+1)
-                message[i] = socketBindArray[i].recv_json()
-                if message[i].split(':')[1] == 'heartbeat':
-                    setValue(1) 
-                    ownFile = open("ownCalendar.txt", 'w')
-                    logEntryNumber+=1
-                    ownFile.writelines("\n"+str(logEntryNumber))
-                    ownFile.close()
-                    #print(ownCalendar)
-                    break """
+        else:
+            pass
 
 
 
