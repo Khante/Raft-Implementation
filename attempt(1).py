@@ -371,9 +371,7 @@ if __name__ == "__main__":
     socketClientBindSix, socketClientBindSeven = contextClientBindSix.socket(zmq.PAIR), contextClientBindSeven.socket(zmq.PAIR)
     clientBindArray = [socketClientBindSix, socketClientBindSeven]
     for i in range(len(clientBindArray)):
-        if (i+1)!=int(identity):
-            #print(int(port)+i+1)
-            clientBindArray[i].bind("tcp://*:%s" % str(int(port)+i+5+1)) #binds to 6006, 6007
+        clientBindArray[i].bind("tcp://*:%s" % str(int(port)+i+5+1)) #binds to 6006, 6007
     ########################
     contextSendOne, contextSendTwo, contextSendThree, contextSendFour, contextSendFive = zmq.Context(), zmq.Context() , zmq.Context() , zmq.Context() ,zmq.Context()
     socketSendOne, socketSendTwo, socketSendThree, socketSendFour, socketSendFive = contextSendOne.socket(zmq.PAIR), contextSendTwo.socket(zmq.PAIR), contextSendThree.socket(zmq.PAIR), contextSendFour.socket(zmq.PAIR), contextSendFive.socket(zmq.PAIR)
