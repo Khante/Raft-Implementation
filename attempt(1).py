@@ -331,7 +331,7 @@ if __name__ == "__main__":
     global socketClientSendArray
     socketClientSendArray = [socketClientSendOne, socketClientSendTwo]
     for i in range(len(socketClientSendArray)):
-        socketClientSendArray.connect("tcp://" + ipAddresses2[i]+ ":%s" % str(int(port)+int(identity)))  #client identities have to be 6 and 7
+        socketClientSendArray[i].connect("tcp://" + ipAddresses2[i]+ ":%s" % str(int(port)+int(identity)))  #client identities have to be 6 and 7
     ###############################
     time.sleep(6)
     setValue(sys.argv[2]) #enter information as programName identity(from o to 5) leader etc
