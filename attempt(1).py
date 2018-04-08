@@ -327,7 +327,7 @@ if __name__ == "__main__":
 
     ######################################
     contextClientSendOne, contextClientSendTwo = zmq.Context(), zmq.Context()
-    socketClientSendOne, socketClientSendTwo = contextClientSendOne.scoket(zmq.PAIR), contextClientSendTwo.scoket(zmq.PAIR)
+    socketClientSendOne, socketClientSendTwo = contextClientSendOne.socket(zmq.PAIR), contextClientSendTwo.socket(zmq.PAIR)
     global socketClientSendArray
     socketClientSendArray = [socketClientSendOne, socketClientSendTwo]
     for i in range(socketClientSendArray):
